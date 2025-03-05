@@ -7,6 +7,17 @@ const zipCodeInput = document.querySelector("#zipCode");
 const stateInput = document.querySelector("#state");
 const phoneInput = document.querySelector("#phone");
 
+//campos opcionales
+
+const genderInput0 = document.querySelector("#genderMale");
+const genderInput1 = document.querySelector("#genderFemale");
+const genderInput2 = document.querySelector("#genderOther");
+
+const eduInput0 = document.querySelector("#eduSecundaria");
+const eduInput1 = document.querySelector("#eduPrepa");
+const eduInput2 = document.querySelector("#eduUni");
+
+
 const checkButton1 = document.querySelector("#sendForm");
 
 //funcion llamada al dar click en el boton "Enviar"
@@ -34,7 +45,31 @@ function checkButton(){
             console.log(stateInput.value);
             console.log(phoneInput.value);
             
-            
+            //imprimir en consola los campos opcionales si hay
+            if(genderInput0.checked){
+                console.log("Hombre");
+            } else if (genderInput1.checked){
+                console.log("Mujer");
+            } else if (genderInput2.checked){
+                console.log("Otro");
+            } else {
+                console.log("Sexo invalido/no seleccionado");
+            }
+
+            if (eduInput0.checked){
+                console.log("Secundaria");
+            }
+            if (eduInput1.checked){
+                console.log("Preparatoria");
+            }
+            if (eduInput2.checked){
+                console.log("Universidad");
+            }
+
+            if (!eduInput0.checked && !eduInput1.checked && !eduInput2.checked){
+                console.log("Educacion no seleccionada.");
+            }
+
         }
     } else {
         //si lo anterior falla por algun motivo
