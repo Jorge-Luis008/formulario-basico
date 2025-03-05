@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles/style.css">
+        <script src="scripts/script.js" defer></script>
+        <title>Formulario</title>
+    </head>
+    <body>
+        <h1>Formulario</h1>
+        <form id="fomularioForm" action="" method="post">
+            <p id="datosGenerales">
+                <input type="text" name="nombre" id="name" placeholder="Nombre" maxlength="20" required>
+                <span class="validity"></span>
+
+                <input type="text" name="apellidoPaterno" id="name2" placeholder="Apellido Paterno" maxlength="20" required>
+                <span class="validity"></span>
+
+                <input type="text" name="apellidoMaterno" id="name3" placeholder="Apellido Materno" maxlength="20" required>
+                <span class="validity"></span>
+            </p>
+            <p id="direcciones">
+                <input type="text" name="calle" id="street" placeholder="Calle" maxlength="30" required>
+                <span class="validity"></span>
+
+                <input type="number" name="codigoPostal" id="zipCode" placeholder="C.P." min="10000" max="99999" required>
+                <span class="validity"></span>
+
+                <select name="estado" id="state" required>
+                    <option value="">--Selecciona un estado--</option>
+                    <option value="sinaloa">Sinaloa</option>
+                    <option value="sonora">Sonora</option>
+                    <option value="nayarit">Nayarit</option>
+                    <option value="durango">Durango</option>
+                    <option value="chihuahua">Chihuahua</option>
+                    <option value="zacatecas">Zacatecas</option>
+                    <option value="jalisco">Jalisco</option>
+                    <option value="nuevoLeon">Nuevo Leon</option>
+                    <option value="bajaCalifornia">Baja California</option>
+                    <option value="bajaCaliforniaSur">Baja California Sur</option>
+                </select>
+                <span class="validity"></span>
+            </p>
+            <p id="datosExtra">
+                <input type="tel" name="telefono" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                <span class="validity"></span>
+
+                <fieldset id="gender">
+                    <legend>Sexo</legend>
+                    <div>
+                        <input type="radio" name="genero" id="genderMale" checked>
+                        <label for="genderMale">Hombre</label>
+
+                        <input type="radio" name="genero" id="genderFemale">
+                        <label for="genderFemale">Mujer</label>
+
+                        <input type="radio" name="genero" id="genderOther">
+                        <label for="genderOther">Otro</label>
+                    </div>
+                </fieldset>
+
+                <fieldset id="education">
+                    <legend>Educacion</legend>
+                    <input type="checkbox" name="educacion" id="eduSecundaria">
+                    <label for="eduSecundaria">Secundaria</label>
+
+                    <input type="checkbox" name="educacion" id="eduPrepa">
+                    <label for="eduPrepa">Preparatoria</label>
+
+                    <input type="checkbox" name="educacion" id="eduUni">
+                    <label for="eduUni">Universidad</label>
+                </fieldset>
+            </p>
+            <p id="buttons">
+
+                <input type="reset" value="Limpiar" id="reset">
+                <button id="sendForm" onclick=checkButton()>Enviar</button>
+                
+            </p>
+        </form>        
+
+    </body>
+</html>

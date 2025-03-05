@@ -1,0 +1,127 @@
+body{
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: solid black;
+}
+h1{
+    text-align: center;
+    font-family: sans-serif;
+}
+
+p#datosGenerales{
+    display: flex;
+}
+input#name,input#name2,input#name3{
+    margin-right: 25px;
+}
+
+p#direcciones{
+    display: flex;
+}
+input#street,input#zipCode,select#state{
+    margin-right: 25px;
+}
+
+p#datosExtra{
+    display: flex;
+}
+input#phone,fieldset#gender{
+    margin-right: 25px;
+    font-family: sans-serif;
+}
+
+fieldset#education{
+    margin-right: 25px;
+    font-family: sans-serif;
+}
+
+input#name,input#name2,input#name3,input#street,input#zipCode,select#state,input#phone,fieldset#gender,fieldset#education{
+    margin-left: 25px;
+}
+input#send{
+    position: sticky; right: 0;
+}
+p#buttons{
+    margin: 25px;
+}
+
+/*Validaciones*/
+
+/*Nombre*/
+input#name:invalid+span::after{
+    position: absolute;
+    content: "✖";
+    color:darkred;
+}
+input#name:valid+span::after{
+    position: absolute;
+    content: "✓";
+    color: darkgreen;
+}
+/*Apellido paterno*/
+input#name2:invalid+span::after{
+    position: absolute;
+    content: "✖";
+    color: darkred;
+}
+input#name2:valid+span::after{
+    position: absolute;
+    content: "✓";
+    color: darkgreen;
+}
+/*apellido materno*/
+input#name3:invalid+span::after{
+    position: absolute;
+    content: "✖";
+    color: darkred;
+}
+input#name3:valid+span::after{
+    position: absolute;
+    content: "✓";
+    color: darkgreen;
+}
+/*calle*/
+input#street:invalid+span::after{
+    position: absolute;
+    content: "✖";
+    color: darkred;
+}
+input#street:valid+span::after{
+    position: absolute;
+    content: "✓";
+    color: darkgreen;
+}
+/*codigo postal*/
+input#zipCode:invalid+span::after{
+    position: absolute;
+    content: "✖";
+    color: darkred;
+}
+input#zipCode:valid+span::after{
+    position: absolute;
+    content: "✓";
+    color: darkgreen;
+}
+/*estado*/
+select#state:invalid+span::after{
+    position: absolute;
+    content: "✖";
+    color: darkred;
+}
+select#state:valid+span::after{
+    position: absolute;
+    content: "✓";
+    color: darkgreen;
+}
+/*Telefono*/
+input#phone:invalid+span::after{
+    position: absolute;
+    content: "✖";
+    color: darkred;
+}
+input#phone:valid+span::after{
+    position: absolute;
+    content: "✓";
+    color: darkgreen;
+}
