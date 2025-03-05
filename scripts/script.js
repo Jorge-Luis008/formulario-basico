@@ -17,7 +17,6 @@ const eduInput0 = document.querySelector("#eduSecundaria");
 const eduInput1 = document.querySelector("#eduPrepa");
 const eduInput2 = document.querySelector("#eduUni");
 
-
 const checkButton1 = document.querySelector("#sendForm");
 
 //funcion llamada al dar click en el boton "Enviar"
