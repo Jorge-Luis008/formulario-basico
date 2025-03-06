@@ -1,21 +1,21 @@
 //campos necesarios para el form
-const nameInput1 = document.querySelector("#name");
-const nameInput2 = document.querySelector("#name2");
-const nameInput3 = document.querySelector("#name3");
-const streetInput = document.querySelector("#street");
-const zipCodeInput = document.querySelector("#zipCode");
-const stateInput = document.querySelector("#state");
-const phoneInput = document.querySelector("#phone");
+const nameInput1 = document.querySelector("#name"); //Nombre
+const nameInput2 = document.querySelector("#name2"); //Apellido Paterno
+const nameInput3 = document.querySelector("#name3"); //Apellido Materno
+const streetInput = document.querySelector("#street"); //Calle
+const zipCodeInput = document.querySelector("#zipCode"); //Codigo Postal
+const stateInput = document.querySelector("#state"); //Estado
+const phoneInput = document.querySelector("#phone"); //Telefono
 
 //campos opcionales
 
-const genderInput0 = document.querySelector("#genderMale");
-const genderInput1 = document.querySelector("#genderFemale");
-const genderInput2 = document.querySelector("#genderOther");
+const genderInput0 = document.querySelector("#genderMale"); //Sexo: Hombre
+const genderInput1 = document.querySelector("#genderFemale"); //Sexo: Mujer
+const genderInput2 = document.querySelector("#genderOther"); //Sexo: Otro
 
-const eduInput0 = document.querySelector("#eduSecundaria");
-const eduInput1 = document.querySelector("#eduPrepa");
-const eduInput2 = document.querySelector("#eduUni");
+const eduInput0 = document.querySelector("#eduSecundaria"); //Educacion: Secundaria
+const eduInput1 = document.querySelector("#eduPrepa"); //Educacion: Preparatoria
+const eduInput2 = document.querySelector("#eduUni"); //Educacion: Universidad
 
 const checkButton1 = document.querySelector("#sendForm");
 
@@ -45,6 +45,8 @@ function checkButton(){
             console.log(phoneInput.value);
             
             //imprimir en consola los campos opcionales si hay
+
+            //Sexo/Genero
             if(genderInput0.checked){
                 console.log("Hombre");
             } else if (genderInput1.checked){
@@ -55,6 +57,7 @@ function checkButton(){
                 console.log("Sexo invalido/no seleccionado");
             }
 
+            //Educacion
             if (eduInput0.checked){
                 console.log("Secundaria");
             }
