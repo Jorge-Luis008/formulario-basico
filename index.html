@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Formulario</h1>
-        <form id="fomularioForm" action="" method="post">
+        <div id="fomularioForm">
             <p id="datosGenerales">
                 <input type="text" name="nombre" id="name" placeholder="Nombre" maxlength="20" required>
                 <span class="validity"></span>
@@ -42,7 +42,7 @@
                 <span class="validity"></span>
             </p>
             <p id="datosExtra">
-                <input type="tel" name="telefono" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                <input type="tel" name="telefono" id="phone" onkeyup=validatePhoneNumber(event) placeholder="123-456-7890" required>
                 <span class="validity"></span>
 
                 <fieldset id="gender">
@@ -73,11 +73,11 @@
             </p>
             <p id="buttons">
 
-                <input type="reset" value="Limpiar" id="reset">
+                <button onclick=clearInput()>Limpiar</button>
                 <button id="sendForm" onclick=checkButton()>Enviar</button>
                 
             </p>
-        </form>        
+        </div>        
 
     </body>
 </html>
