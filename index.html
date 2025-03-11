@@ -26,20 +26,24 @@
                 <input type="number" name="codigoPostal" id="zipCode" placeholder="C.P." min="10000" max="99999" required>
                 <span class="validity"></span>
 
-                <select name="estado" id="state" required>
+                <select name="estado" id="state" onchange="giveMunicipality()" required >
                     <option value="">--Selecciona un estado--</option>
-                    <option value="sinaloa">Sinaloa</option>
-                    <option value="sonora">Sonora</option>
-                    <option value="nayarit">Nayarit</option>
-                    <option value="durango">Durango</option>
-                    <option value="chihuahua">Chihuahua</option>
-                    <option value="zacatecas">Zacatecas</option>
-                    <option value="jalisco">Jalisco</option>
-                    <option value="nuevoLeon">Nuevo Leon</option>
-                    <option value="bajaCalifornia">Baja California</option>
-                    <option value="bajaCaliforniaSur">Baja California Sur</option>
+                    <option value="sinaloa" >Sinaloa</option>
+                    <option value="sonora" >Sonora</option>
+                    <option value="nayarit" >Nayarit</option>
+                    <option value="durango" >Durango</option>
+                    <option value="chihuahua" >Chihuahua</option>
+                    <option value="zacatecas" >Zacatecas</option>
+                    <option value="jalisco" >Jalisco</option>
+                    <option value="nuevoLeon" >Nuevo Leon</option>
+                    <option value="bajaCalifornia" >Baja California</option>
+                    <option value="bajaCaliforniaSur" >Baja California Sur</option>
                 </select>
                 <span class="validity"></span>
+
+                <select name="municipio" id="municipality">
+                    <option value="0" >--Seleccione un municipio--</option>
+                </select>
             </p>
             <p id="datosExtra">
                 <input type="tel" name="telefono" id="phone" onkeydown=validatePhoneNumber(event) placeholder="Telefono" minlength="10" maxlength="10" required>
