@@ -91,14 +91,6 @@ giveMunicipality = async function(){
     }
     
 };
-/*
-function clearList(stat){
-    var o,L=stat.options.length-1;
-    for(i=L;i>=0;i--){
-        municipalitylist.remove(i);
-    }
-}
-*/
 //funcion llamada al dar click en el boton "Enviar"
 async function checkButton(){
 
@@ -115,16 +107,19 @@ async function checkButton(){
 
         const url = "https://postman-echo.com/post";
 
+        var headers = new Headers();
+        headers.append('Content-Type','application/json');
+        headers.append('Accept','application/json');
+        headers.append('Origin','*');
+
         const response = await fetch(url,
             {
                 method:"POST",
+                headers: headers,
                 mode:"no-cors",
-                headers:{
-                    'Content-Type':'application/json',
-                }, 
                 body: JSON.stringify(bodyRequest)
-        });
-        console.log(response);
+            });
+        console.log(response.body);
         alert("Informacion enviada correctamente.");
     } else {
         //si lo anterior falla por algun motivo
@@ -154,7 +149,6 @@ function clearInput(){
 
 function validatePhoneNumber(event){
     event.key
-    //event.consume para no mostrar la letra en el imput
     if(isNaN(event.key) && event.key !== 'Backspace'){
         event.preventDefault();
     }
