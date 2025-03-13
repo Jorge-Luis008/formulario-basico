@@ -5,6 +5,7 @@ Formulario basico que imprime en consola:
 - Calle
 - Codigo Postal
 - Estado
+- Municipio
 - Telefono
 
 Y si son dados:
