@@ -95,6 +95,7 @@ giveMunicipality = async function(){
 async function checkButton(){
 
     if (validarCampos()){
+        debugger
         const bodyRequest = {
             nombre: nameInput1.value,
             apellidoPaterno: nameInput2.value,
@@ -107,19 +108,14 @@ async function checkButton(){
 
         const url = "https://postman-echo.com/post";
 
-        var headers = new Headers();
-        headers.append('Content-Type','application/json');
-        headers.append('Accept','application/json');
-        headers.append('Origin','*');
-
         const response = await fetch(url,
             {
                 method:"POST",
-                headers: headers,
                 mode:"no-cors",
+                headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(bodyRequest)
-            });
-        console.log(response.body);
+            })
+        console.log(bodyRequest)
         alert("Informacion enviada correctamente.");
     } else {
         //si lo anterior falla por algun motivo
