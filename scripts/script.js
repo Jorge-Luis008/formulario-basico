@@ -72,6 +72,7 @@ const municipiosOpciones = {};
     municipiosOpciones['bajaCalifornia'] = ["1-Ensenada","2-Mexicali","3-Tecate","4-Tijuana","5-Playas de Rosarito","6-San Quintín","7-San Felipe"];
     municipiosOpciones['bajaCaliforniaSur'] = ["1-Comondú","2-Mulegé","3-La Paz","4-Los Cabos","5-Loreto"];
 //funcion para cambiar municipios
+//https://github.com/icaliaLabs/sepoMex <- API para buscar los municipios
 giveMunicipality = async function(){
     var stateList = document.getElementById("state");
     var municipalitylist = document.getElementById("municipality");
@@ -95,7 +96,6 @@ giveMunicipality = async function(){
 async function checkButton(){
 
     if (validarCampos()){
-        debugger
         const bodyRequest = {
             nombre: nameInput1.value,
             apellidoPaterno: nameInput2.value,
@@ -107,15 +107,17 @@ async function checkButton(){
         };
 
         const url = "https://postman-echo.com/post";
+        var requestOptions = {
+            method:'POST',
+            body: JSON.stringify(bodyRequest),
+            redirect: 'follow'
+        };
 
-        const response = await fetch(url,
-            {
-                method:"POST",
-                mode:"no-cors",
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify(bodyRequest)
-            })
-        console.log(bodyRequest)
+       await fetch(url,requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log('error',error));
+        //console.log(response)
         alert("Informacion enviada correctamente.");
     } else {
         //si lo anterior falla por algun motivo
