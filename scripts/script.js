@@ -47,8 +47,8 @@ giveMunicipality = async function(){
     };
 debugger
     if(totalMuni){
-        for(var i = 1; i < totalMuni-1; i++){
-            var muni2 = new Option(pls[i],i)
+        for(var i = 0; i <= totalMuni-1; i++){
+            var muni2 = new Option(pls.municipalities[i],i)
             municipalityList.options.add(muni2)
         }
     }
