@@ -40,15 +40,16 @@ giveMunicipality = async function(){
         pls = data
         totalMuni = data.municipalities.length
         console.log(totalMuni)
+        console.log(pls)
     });
 
     while (municipalityList.options.length){
         municipalityList.remove(0);
     };
-debugger
+//debugger
     if(totalMuni){
         for(var i = 0; i <= totalMuni-1; i++){
-            var muni2 = new Option(pls.municipalities[i],i)
+            var muni2 = new Option(pls.municipalities[i].name,i)
             municipalityList.options.add(muni2)
         }
     }
