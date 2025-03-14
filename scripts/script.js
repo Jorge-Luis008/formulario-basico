@@ -29,31 +29,35 @@ giveMunicipality = async function(){
     var municipalityList = document.getElementById("municipality");
 
     var selectState = stateList.value;
-    const url1 = ['https://sepomex.icalialabs.com/api/v1/states/'+selectState+'/municipalities']
+    if (!stateList.value){
+        return;
+    } else {
+        const url1 = ['https://sepomex.icalialabs.com/api/v1/states/'+selectState+'/municipalities']
 
-    var totalMuni=0;
-    var pls=0;
+        var totalMuni=0;
+        var pls=0;
 
-    const resMuni = await fetch(url1)
-    .then(response => response.json())
-    .then(data => {
-        pls = data
-        totalMuni = data.municipalities.length
-        console.log(totalMuni)
-        console.log(pls)
-    });
+        const resMuni = await fetch(url1)
+        .then(response => response.json())
+        .then(data => {
+            pls = data
+            totalMuni = data.municipalities.length
+            console.log(totalMuni)
+            console.log(pls)
+        });
 
-    while (municipalityList.options.length){
-        municipalityList.remove(0);
-    };
-//debugger
-    if(totalMuni){
-        for(var i = 0; i <= totalMuni-1; i++){
-            var muni2 = new Option(pls.municipalities[i].name,i)
-            municipalityList.options.add(muni2)
+        while (municipalityList.options.length){
+            municipalityList.remove(0);
+        };
+        if(totalMuni){
+            for(var i = 0; i <= totalMuni-1; i++){
+                var muni2 = new Option(pls.municipalities[i].name,i)
+                municipalityList.options.add(muni2)
+            }
         }
-    }
-};
+    };
+}
+    
 //funcion llamada al dar click en el boton "Enviar"
 async function checkButton(){
 
