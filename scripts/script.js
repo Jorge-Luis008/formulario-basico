@@ -23,11 +23,10 @@ const checkButton1 = document.getElementById("sendForm");
 //Dar municipios
 
 //https://github.com/icaliaLabs/sepoMex <- API para buscar los municipios
+var stateList = document.getElementById("state");
+var municipalityList = document.getElementById("municipality");
 
 giveMunicipality = async function(){
-    var stateList = document.getElementById("state");
-    var municipalityList = document.getElementById("municipality");
-
     var selectState = stateList.value;
     if (!stateList.value){
         return;
@@ -35,15 +34,15 @@ giveMunicipality = async function(){
         const url1 = ['https://sepomex.icalialabs.com/api/v1/states/'+selectState+'/municipalities']
 
         var totalMuni=0;
-        var pls=0;
+        var data1=0;
 
         const resMuni = await fetch(url1)
         .then(response => response.json())
         .then(data => {
-            pls = data
+            data1 = data
             totalMuni = data.municipalities.length
-            console.log(totalMuni)
-            console.log(pls)
+            //console.log(totalMuni)
+            //console.log(data1)
         });
 
         while (municipalityList.options.length){
@@ -51,7 +50,7 @@ giveMunicipality = async function(){
         };
         if(totalMuni){
             for(var i = 0; i <= totalMuni-1; i++){
-                var muni2 = new Option(pls.municipalities[i].name,i)
+                var muni2 = new Option(data1.municipalities[i].name,i)
                 municipalityList.options.add(muni2)
             }
         }
@@ -60,6 +59,39 @@ giveMunicipality = async function(){
     
 //funcion llamada al dar click en el boton "Enviar"
 async function checkButton(){
+    var stateNum = stateInput.value;
+    var muniNum = municipalityInput.value;
+
+    var data2 = 0;
+    var stateLength = 0;
+    var url2 = [0];
+    var idStart = 0;
+debugger
+    if (stateNum<16){
+        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=1'];
+        idStart = 0;
+    } else if(stateNum>=16 && stateNum<=30){
+        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=2'];
+        idStart = 16;
+    } else if(stateNum>30){
+        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=3'];
+        idStart = 30;
+    }
+
+    const stateName = await fetch(url2).then(response => response.json()).then(data => {
+        data2 = data
+        stateLength = data.states.length
+    })
+
+    let x = 0;
+    while (x < stateLength){
+        if (idStart == stateNum - 1){
+            var state2 = data2.states[x].name;
+            break;
+        }
+        x = x + 1;
+        idStart = idStart + 1;
+    }
 
     if (validarCampos()){
         const bodyRequest = {
@@ -68,8 +100,8 @@ async function checkButton(){
             apellidoMaterno: nameInput3.value,
             calle: streetInput.value,
             codigoPostal: zipCodeInput.value,
-            estado: stateInput.value,
-            municipio: municipalityInput.value
+            estado: state2,
+            municipio: municipalityInput
         };
 
         const url2 = "https://postman-echo.com/post";
@@ -78,6 +110,8 @@ async function checkButton(){
             body: JSON.stringify(bodyRequest),
             redirect: 'follow'
         };
+
+        console.log(bodyRequest);
         alert("Informacion enviada correctamente.");
     } else {
         //si lo anterior falla por algun motivo
@@ -106,7 +140,7 @@ function clearInput(){
 }
 
 function validatePhoneNumber(event){
-    event.key
+    //event.key
     if(isNaN(event.key) && event.key !== 'Backspace'){
         event.preventDefault();
     }
