@@ -72,7 +72,7 @@ async function checkButton(){
     //Buscar la pagina que contenga el estado correcto
     if (stateNum<=15){
         url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=1'];
-        idStart = -1;
+        idStart = 1;
     } else if(stateNum>=16 && stateNum<=30){
         url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=2'];
         idStart = 16;
@@ -141,10 +141,14 @@ async function checkButton(){
         var requestOptions = {
             method:'POST',
             body: JSON.stringify(bodyRequest),
-            redirect: 'follow'
+            headers: {
+                'Content-Type':'application/json'
+            }
         };
 
-        console.log(bodyRequest);
+        const respuesta = await fetch(url2,requestOptions).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:',error));
+
+        console.log(respuesta);
         alert("Informacion enviada correctamente.");
     } else {
         //si lo anterior falla por algun motivo
