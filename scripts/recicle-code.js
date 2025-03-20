@@ -90,3 +90,12 @@ const municipiosOpciones = {};
         .catch(error => console.log('error',error));
         console.log(response)
     */
+
+    //CODIGO PARA OBTENER EL NOMBRE DEL ESTADO SEGUN EL API
+    /*
+        if(stateLength){
+                for(var x = 0; x !== stateLength - 1 || idStart==data2.states[x].id; x,idStart++){
+                var state2 = data2.states[x].name,x
+        } else {}
+    }
+    */
