@@ -1,5 +1,5 @@
 # Formulario basico
-Formulario basico que imprime en consola:
+## 📄 Formulario basico que imprime en consola:
 - Nombre(s)
 - Apellido(s) Paterno y Materno
 - Calle
@@ -8,6 +8,6 @@ Formulario basico que imprime en consola:
 - Municipio
 - Telefono
 
-Y si son dados:
+## 📝 Y si son dados:
 - Genero/Sexo
 - Educacion
