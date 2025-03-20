@@ -6,7 +6,7 @@
         <script src="scripts/script.js" defer></script>
         <title>Formulario</title>
     </head>
-    <body>
+    <body onload="loadData()">
         <h1>Formulario</h1>
         <div id="fomularioForm">
             <p id="datosGenerales">
@@ -27,22 +27,12 @@
                 <span class="validity"></span>
 
                 <select name="estado" id="state" onchange="giveMunicipality()" required >
-                    <option value="">--Selecciona un estado--</option>
-                    <option value="2" name="bajaCalifornia">Baja California</option>
-                    <option value="3" name="bajaCaliforniaSur">Baja California Sur</option>
-                    <option value="8" name="chihuahua">Chihuahua</option>
-                    <option value="10" name="durango">Durango</option>
-                    <option value="14" name="jalisco">Jalisco</option>
-                    <option value="18" name="nayarit">Nayarit</option>
-                    <option value="19" name="nuevoLeon">Nuevo Leon</option>
-                    <option value="25" name="sinaloa">Sinaloa</option>
-                    <option value="26" name="sonora">Sonora</option>
-                    <option value="32" name="zacatecas">Zacatecas</option>
+                    <!--Estados ami-->
                 </select>
                 <span class="validity"></span>
 
-                <select name="municipio" id="municipality">
-                    <option value="0" >--Seleccione un municipio--</option>
+                <select name="municipio" id="municipality" disabled>
+                    <!--Se necesitan municipios!-->
                 </select>
             </p>
             <p id="datosExtra">
