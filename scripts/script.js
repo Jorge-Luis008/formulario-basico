@@ -20,14 +20,78 @@ const eduInput2 = document.getElementById("eduUni"); //Educacion: Universidad
 
 const checkButton1 = document.getElementById("sendForm");
 
-//Dar municipios
-
 //https://github.com/icaliaLabs/sepoMex <- API para buscar los municipios
+
 var stateList = document.getElementById("state");
 var municipalityList = document.getElementById("municipality");
 
+//Insertar estados al cargar la pagina
+async function loadData(){
+    //la url sin num de pagina para cambiarla despues
+    var apiStatesURL = ['https://sepomex.icalialabs.com/api/v1/states?page='] 
+    //el id del estado inicial (Aguascalientes)
+    var stateID = 0;
+    //Variables a cambiar
+    var maxStatePage = 0;
+    var statesURL = [''];
+    var correctData = 0;
+
+    //funcion para comprobar la pagina correcta
+    while(stateID != 33){
+        var a = 0;
+        if(stateID<15){
+            statesURL = apiStatesURL+'1'
+            await fetch(statesURL).then(data => {
+                var data1 = data;
+                maxStatePage = data1.states.length;
+            })
+            while(a < maxStatePage){
+                var addState = new Option(data1.states[stateID].name)
+                stateList.options.add(addState)
+                stateID++
+                a++
+                if(stateID=15){break;}
+            }
+        } else if(stateID>=15 && stateID<=30){
+            statesURL = apiStatesURL+'2'
+            fetch(statesURL).then(data => {
+                var data2 = data;
+                maxStatePage = data2.states.length;
+            })
+            while(a < maxStatePage){
+                var addState = new Option(data2.states[stateID].name)
+                stateList.options.add(addState)
+                stateID++
+                a++
+                if(stateID=31){break;}
+            }
+        } else if(stateID>30){
+            statesURL = apiStatesURL+'3'
+            fetch(statesURL).then(data => {
+                var data3 = data;
+                maxStatePage = data3.states.length;
+            })
+            while(a < maxStatePage){
+                var addState = new Option(data3.states[stateID].name)
+                stateList.options.add(addState)
+                stateID++
+                a++
+                if(stateID=33){break;}
+            }
+        }
+    }
+}
 giveMunicipality = async function(){
+    if(stateList.value==""){
+        console.log(stateList.value)
+        municipalityList.disabled = true; //desabilitar el select de los municipios
+    } else {
+        console.log(stateList.value)
+        municipalityList.disabled = false; //reactivar el select de los municipios
+    }
+    
     var selectState = stateList.value;
+    /*
     if (!stateList.value){
         return;
     } else {
@@ -41,8 +105,6 @@ giveMunicipality = async function(){
         .then(data => {
             data1 = data
             totalMuni = data.municipalities.length
-            //console.log(totalMuni)
-            //console.log(data1)
         });
 
         while (municipalityList.options.length){
@@ -54,7 +116,7 @@ giveMunicipality = async function(){
                 municipalityList.options.add(muni2)
             }
         }
-    };
+    } */
 }
     
 //funcion llamada al dar click en el boton "Enviar"

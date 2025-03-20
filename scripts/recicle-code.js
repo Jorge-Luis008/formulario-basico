@@ -1,4 +1,22 @@
 // CODIGO QUE PUEDE SER UTIL DESPUES
+
+// HTML
+/*
+<option value="2" name="bajaCalifornia">Baja California</option>
+<option value="3" name="bajaCaliforniaSur">Baja California Sur</option>
+<option value="8" name="chihuahua">Chihuahua</option>
+<option value="10" name="durango">Durango</option>
+<option value="14" name="jalisco">Jalisco</option>
+<option value="18" name="nayarit">Nayarit</option>
+<option value="19" name="nuevoLeon">Nuevo Leon</option>
+<option value="25" name="sinaloa">Sinaloa</option>
+<option value="26" name="sonora">Sonora</option>
+<option value="32" name="zacatecas">Zacatecas</option>
+*/
+
+// CSS
+
+// JAVASCRIPT
 /*
 
 // MUNICIPIOS DE 10 ESTADOS 
@@ -98,4 +116,25 @@ const municipiosOpciones = {};
                 var state2 = data2.states[x].name,x
         } else {}
     }
-    */
+
+    //CODIGO DE BUSCAR ESTADOS VIEJO
+    
+    while (stateID<=32){
+        if (stateID>=16 && stateID<=30){
+            statesURL = ['https://sepomex.icalialabs.com/api/v1/states?page=2']
+        } else if (stateID<30){
+            statesURL = ['https://sepomex.icalialabs.com/api/v1/states?page=3']
+        } else if (stateID=33){
+            break;
+        }
+
+        //se crea un elemento option en los estados
+        const optionState = document.createElement("option")
+
+        //se da su valor correspondiente al id del estado
+        optionState.value = stateID
+
+        optionState.text = 
+        stateID++;
+    }
+*/
