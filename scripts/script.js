@@ -28,58 +28,73 @@ var municipalityList = document.getElementById("municipality");
 //Insertar estados al cargar la pagina
 async function loadData(){
     //la url sin num de pagina para cambiarla despues
-    var apiStatesURL = ['https://sepomex.icalialabs.com/api/v1/states?page='] 
+    const apiStatesURL = ['https://sepomex.icalialabs.com/api/v1/states?page='] 
     //el id del estado inicial (Aguascalientes)
     var stateID = 0;
     //Variables a cambiar
-    var maxStatePage = 0;
-    var statesURL = [''];
+    var statesPageLength = 0;
+    var statesURL = [];
     var correctData = 0;
 
-    //funcion para comprobar la pagina correcta
-    while(stateID != 33){
-        var a = 0;
-        if(stateID<15){
-            statesURL = apiStatesURL+'1'
-            await fetch(statesURL).then(data => {
-                var data1 = data;
-                maxStatePage = data1.states.length;
+    //Buscar en la pagina correcta por el estado e insertarlo
+    let a = 0;
+    while (a != 30){
+        if(a == 33){break;} //Si por algun motivo la variable se sale del arreglo
+        if(a < 14){
+
+            let x = 0;
+            var dataStates1 = [];
+            statesURL=apiStatesURL+'1';
+            const giveState1 = await fetch(statesURL).then(response => response.json()).then(data => {
+                dataStates1 = data;
+                statesPageLength = data.states.length - 1;
             })
-            while(a < maxStatePage){
-                var addState = new Option(data1.states[stateID].name)
-                stateList.options.add(addState)
-                stateID++
-                a++
-                if(stateID=15){break;}
+
+            while(x < statesPageLength){
+                var addState = new Option(dataStates1.states[x].name,x);
+                stateList.options.add(addState);
+                a++;
+                x++;
+                if(x == statesPageLength){break;}
             }
-        } else if(stateID>=15 && stateID<=30){
-            statesURL = apiStatesURL+'2'
-            fetch(statesURL).then(data => {
-                var data2 = data;
-                maxStatePage = data2.states.length;
+
+        } else if(a >= 14 && a < 28){
+
+            let y = 0;
+            var dataStates2 = [];
+            statesURL=apiStatesURL+'2';
+            const giveState2 = await fetch(statesURL).then(response => response.json()).then(data => {
+                dataStates2 = data;
+                statesPageLength = data.states.length - 1;
             })
-            while(a < maxStatePage){
-                var addState = new Option(data2.states[stateID].name)
-                stateList.options.add(addState)
-                stateID++
-                a++
-                if(stateID=31){break;}
+
+            while(y < statesPageLength){
+                var addState2 = new Option(dataStates2.states[y].name,y);
+                stateList.options.add(addState2);
+                a++;
+                y++;
+                if(y == statesPageLength){break;}
             }
-        } else if(stateID>30){
-            statesURL = apiStatesURL+'3'
-            fetch(statesURL).then(data => {
-                var data3 = data;
-                maxStatePage = data3.states.length;
+        } else { debugger
+
+            let z = 0;
+            var dataStates3 = [];
+            statesURL=apiStatesURL+'3';
+            const giveState3 = await fetch(statesURL).then(response => response.json()).then(data => {
+                dataStates3 = data;
+                statesPageLength = data.states.length - 1;
             })
-            while(a < maxStatePage){
-                var addState = new Option(data3.states[stateID].name)
-                stateList.options.add(addState)
-                stateID++
-                a++
-                if(stateID=33){break;}
+
+            while(z <= statesPageLength){
+                var addState3 = new Option(dataStates3.states[z].name,z);
+                stateList.options.add(addState3);
+                a++;
+                z++;
+                if(z > statesPageLength){break;}
             }
         }
     }
+
 }
 giveMunicipality = async function(){
     if(stateList.value==""){
