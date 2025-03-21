@@ -117,7 +117,7 @@ const municipiosOpciones = {};
         } else {}
     }
 
-    //CODIGO DE BUSCAR ESTADOS VIEJO
+    //CODIGOS DE BUSCAR ESTADOS VIEJO
     
     while (stateID<=32){
         if (stateID>=16 && stateID<=30){
@@ -136,5 +136,49 @@ const municipiosOpciones = {};
 
         optionState.text = 
         stateID++;
+    }
+
+    while(stateID != 33){
+        var a = 0;
+        if(stateID<15){
+            statesURL = apiStatesURL+'1'
+            await fetch(statesURL).then(data => {
+                var data1 = data;
+                maxStatePage = data1.states.length;
+            })
+            while(a < maxStatePage){
+                var addState = new Option(data1.states[stateID].name)
+                stateList.options.add(addState)
+                stateID++
+                a++
+                if(stateID=15){break;}
+            }
+        } else if(stateID>=15 && stateID<=30){
+            statesURL = apiStatesURL+'2'
+            fetch(statesURL).then(data => {
+                var data2 = data;
+                maxStatePage = data2.states.length;
+            })
+            while(a < maxStatePage){
+                var addState = new Option(data2.states[stateID].name)
+                stateList.options.add(addState)
+                stateID++
+                a++
+                if(stateID=31){break;}
+            }
+        } else if(stateID>30){
+            statesURL = apiStatesURL+'3'
+            fetch(statesURL).then(data => {
+                var data3 = data;
+                maxStatePage = data3.states.length;
+            })
+            while(a < maxStatePage){
+                var addState = new Option(data3.states[stateID].name)
+                stateList.options.add(addState)
+                stateID++
+                a++
+                if(stateID=33){break;}
+            }
+        }
     }
 */
