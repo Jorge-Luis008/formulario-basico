@@ -221,8 +221,9 @@ async function checkButton(){
         };
 
         const url2 = "https://postman-echo.com/post";
-        var requestOptions = {
+        var requestOptions = { //opciones que se requieren por el metodo fetch
             method:'POST',
+            mode: 'cors', //posiblemente no sirva completamente y se necesite usar el modo 'no-cors'
             body: JSON.stringify(bodyRequest),
             headers: {
                 'Content-Type':'application/json',
@@ -246,6 +247,7 @@ async function checkButton(){
     }
 }
 
+//funcion para validar todos los campos necesarios/requeridos
 function validarCampos(){
 
     if (!nameInput1.value || !nameInput2.value || !nameInput3.value || !streetInput.value || !zipCodeInput.value ||!stateInput.value || !municipalityInput.value){
@@ -254,6 +256,7 @@ function validarCampos(){
     return true;
 }
 
+//funcion para limpiar lo escrito en el formulario
 function clearInput(){
     nameInput1.value='';
     nameInput2.value='';
@@ -265,6 +268,7 @@ function clearInput(){
     phoneInput.value='';
 }
 
+//funcion para validar el numero de telefono y no se escriban ni letras ni simbolos, solo numeros
 function validatePhoneNumber(event){
     if(isNaN(event.key) && event.key !== 'Backspace'){
         event.preventDefault();
