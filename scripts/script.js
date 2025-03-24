@@ -40,25 +40,25 @@ async function loadData(){
     let a = 0;
     while (a != 33){
         if(a == 32){break;} //Si por algun motivo la variable se sale del arreglo
-        if(a < 15){
+        if(a < 15){ //Busca los estados de la primera pagina
 
             let x = 0;
             var dataStates1 = [];
             statesURL=apiStatesURL+'1';
             const giveState1 = await fetch(statesURL).then(response => response.json()).then(data => {
                 dataStates1 = data;
-                statesPageLength = data.states.length;
+                statesPageLength = data.states.length; //da el numero de estados de la pagina
             })
 
-            while(x < statesPageLength){
+            while(x < statesPageLength){ //Añade los estados en la pagina uno por uno
                 var addState = new Option(dataStates1.states[x].name,x);
                 stateList.options.add(addState);
                 a++;
                 x++;
-                if(x > statesPageLength){break;}
+                if(x > statesPageLength){break;} //para salir del loop while
             }
 
-        } else if(a >= 15 && a < 30){
+        } else if(a >= 15 && a < 30){ //Busca los estados de la segunda pagina
 
             let y = 0;
             var dataStates2 = [];
@@ -68,14 +68,14 @@ async function loadData(){
                 statesPageLength = data.states.length;
             })
 
-            while(y < statesPageLength){
+            while(y < statesPageLength){ //Añade los estado de la segunda pagina despues de el ultimo de la primera
                 var addState2 = new Option(dataStates2.states[y].name,y);
                 stateList.options.add(addState2);
                 a++;
                 y++;
                 if(y > statesPageLength){break;}
             }
-        } else {
+        } else { //Busca los estados restantes en la tercera y ultima pagina
 
             let z = 0;
             var dataStates3 = [];
@@ -85,7 +85,7 @@ async function loadData(){
                 statesPageLength = data.states.length;
             })
 
-            while(z < statesPageLength){
+            while(z < statesPageLength){ //Añade los estados restantes
                 var addState3 = new Option(dataStates3.states[z].name,z);
                 stateList.options.add(addState3);
                 a++;
@@ -115,6 +115,7 @@ giveMunicipality = async function(){
         var totalMuni=0;
         var data1=0;
 
+        //Busca los por los municipios del estado seleccionado
         const resMuni = await fetch(url1)
         .then(response => response.json())
         .then(data => {
@@ -122,10 +123,10 @@ giveMunicipality = async function(){
             totalMuni = data.municipalities.length
         });
 
-        while (municipalityList.options.length){
+        while (municipalityList.options.length){ //elimina los municipios que estaban antes, si habia algunos
             municipalityList.remove(0);
         };
-        if(totalMuni){
+        if(totalMuni){ //añade todos los municipios del estado
             for(var i = 0; i <= totalMuni-1; i++){
                 var muni2 = new Option(data1.municipalities[i].name,i)
                 municipalityList.options.add(muni2)
@@ -229,17 +230,18 @@ async function checkButton(){
             }
         };
 
+        //fetch para enviar los datos a postman-echo para que este los imprime en la consola
         const respuesta = await fetch(url2,requestOptions).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:',error));
 
-        if (respuesta.ok){
+        if (respuesta.ok){ //si la informacion fue enviada
             console.log(respuesta);
             alert("Informacion enviada");
-        } else {
+        } else { //si la informaion no fue enviada
             alert("Hubo un ERROR: Informacion NO enviada");
         }
     } else {
-        //si lo anterior falla por algun motivo
-        alert("ERROR: hubo un error al enviar los datos, intentelo mas tarde.");
+        //si por un motivo no se pudo enviar nada
+        alert("ERROR: Verifica que rellenaste todos los campos e intentelo otra vez.");
         return;
     }
 }
@@ -267,5 +269,4 @@ function validatePhoneNumber(event){
     if(isNaN(event.key) && event.key !== 'Backspace'){
         event.preventDefault();
     }
-
 }
