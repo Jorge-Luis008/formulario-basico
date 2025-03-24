@@ -203,7 +203,7 @@ async function checkButton(){
     }
 
     //Funcion para validar los campos
-    if (validarCampos()){debugger
+    if (validarCampos()){
         var selectState = stateInput.selectedIndex;
         var selectMuni = municipalityInput.selectedIndex;
         var sendState = stateInput[selectState].text
@@ -224,14 +224,19 @@ async function checkButton(){
             method:'POST',
             body: JSON.stringify(bodyRequest),
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin':'https://postman-echo.com/post'
             }
         };
 
-        // const respuesta = await fetch(url2,requestOptions).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:',error));
+        const respuesta = await fetch(url2,requestOptions).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:',error));
 
-        console.log(bodyRequest);
-        alert("Informacion enviada correctamente.");
+        if (respuesta.ok){
+            console.log(respuesta);
+            alert("Informacion enviada");
+        } else {
+            alert("Hubo un ERROR: Informacion NO enviada");
+        }
     } else {
         //si lo anterior falla por algun motivo
         alert("ERROR: hubo un error al enviar los datos, intentelo mas tarde.");
