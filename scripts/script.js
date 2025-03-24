@@ -38,16 +38,16 @@ async function loadData(){
 
     //Buscar en la pagina correcta por el estado e insertarlo
     let a = 0;
-    while (a != 30){
-        if(a == 33){break;} //Si por algun motivo la variable se sale del arreglo
-        if(a < 14){
+    while (a != 33){
+        if(a == 32){break;} //Si por algun motivo la variable se sale del arreglo
+        if(a < 15){
 
             let x = 0;
             var dataStates1 = [];
             statesURL=apiStatesURL+'1';
             const giveState1 = await fetch(statesURL).then(response => response.json()).then(data => {
                 dataStates1 = data;
-                statesPageLength = data.states.length - 1;
+                statesPageLength = data.states.length;
             })
 
             while(x < statesPageLength){
@@ -55,17 +55,17 @@ async function loadData(){
                 stateList.options.add(addState);
                 a++;
                 x++;
-                if(x == statesPageLength){break;}
+                if(x > statesPageLength){break;}
             }
 
-        } else if(a >= 14 && a < 28){
+        } else if(a >= 15 && a < 30){
 
             let y = 0;
             var dataStates2 = [];
             statesURL=apiStatesURL+'2';
             const giveState2 = await fetch(statesURL).then(response => response.json()).then(data => {
                 dataStates2 = data;
-                statesPageLength = data.states.length - 1;
+                statesPageLength = data.states.length;
             })
 
             while(y < statesPageLength){
@@ -73,19 +73,19 @@ async function loadData(){
                 stateList.options.add(addState2);
                 a++;
                 y++;
-                if(y == statesPageLength){break;}
+                if(y > statesPageLength){break;}
             }
-        } else { debugger
+        } else {
 
             let z = 0;
             var dataStates3 = [];
             statesURL=apiStatesURL+'3';
             const giveState3 = await fetch(statesURL).then(response => response.json()).then(data => {
                 dataStates3 = data;
-                statesPageLength = data.states.length - 1;
+                statesPageLength = data.states.length;
             })
 
-            while(z <= statesPageLength){
+            while(z < statesPageLength){
                 var addState3 = new Option(dataStates3.states[z].name,z);
                 stateList.options.add(addState3);
                 a++;
@@ -98,15 +98,15 @@ async function loadData(){
 }
 giveMunicipality = async function(){
     if(stateList.value==""){
-        console.log(stateList.value)
+        //console.log(stateList.value)
         municipalityList.disabled = true; //desabilitar el select de los municipios
     } else {
-        console.log(stateList.value)
+        //console.log(stateList.value)
         municipalityList.disabled = false; //reactivar el select de los municipios
     }
     
-    var selectState = stateList.value;
-    /*
+    var selectState = stateInput.selectedIndex + 1;
+    
     if (!stateList.value){
         return;
     } else {
@@ -131,7 +131,7 @@ giveMunicipality = async function(){
                 municipalityList.options.add(muni2)
             }
         }
-    } */
+    } 
 }
     
 //funcion llamada al dar click en el boton "Enviar"
@@ -167,7 +167,7 @@ async function checkButton(){
     //Funcion para buscar el estado correcto y su nombre
     let x = 0;
     while (x < stateLength){
-        if (idStart == stateNum ){
+        if (idStart == stateNum){
             var state2 = data2.states[x].name;
             break;
         }
@@ -203,15 +203,20 @@ async function checkButton(){
     }
 
     //Funcion para validar los campos
-    if (validarCampos()){
+    if (validarCampos()){debugger
+        var selectState = stateInput.selectedIndex;
+        var selectMuni = municipalityInput.selectedIndex;
+        var sendState = stateInput[selectState].text
+        var sendMuni = municipalityInput[selectMuni].text
+
         const bodyRequest = {
             nombre: nameInput1.value,
             apellidoPaterno: nameInput2.value,
             apellidoMaterno: nameInput3.value,
             calle: streetInput.value,
             codigoPostal: zipCodeInput.value,
-            estado: state2,
-            municipio: muni2
+            estado: sendState,
+            municipio: sendMuni
         };
 
         const url2 = "https://postman-echo.com/post";
@@ -223,9 +228,9 @@ async function checkButton(){
             }
         };
 
-        const respuesta = await fetch(url2,requestOptions).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:',error));
+        // const respuesta = await fetch(url2,requestOptions).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:',error));
 
-        console.log(respuesta);
+        console.log(bodyRequest);
         alert("Informacion enviada correctamente.");
     } else {
         //si lo anterior falla por algun motivo
@@ -254,7 +259,6 @@ function clearInput(){
 }
 
 function validatePhoneNumber(event){
-    //event.key
     if(isNaN(event.key) && event.key !== 'Backspace'){
         event.preventDefault();
     }
