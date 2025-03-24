@@ -8,6 +8,6 @@
 - Municipio
 - Telefono
 
-## 📝 Y si son dados:
+## 📝 Y si son dados: (WIP)
 - Genero/Sexo
 - Educacion
