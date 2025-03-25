@@ -18,9 +18,7 @@ const eduInput0 = document.getElementById("eduSecundaria"); //Educacion: Secunda
 const eduInput1 = document.getElementById("eduPrepa"); //Educacion: Preparatoria
 const eduInput2 = document.getElementById("eduUni"); //Educacion: Universidad
 
-const checkButton1 = document.getElementById("sendForm");
-
-//https://github.com/icaliaLabs/sepoMex <- API para buscar los municipios
+const checkButton1 = document.getElementById("sendForm"); //Boton para enviar los datos
 
 var stateList = document.getElementById("state");
 var municipalityList = document.getElementById("municipality");
@@ -34,7 +32,6 @@ async function loadData(){
     //Variables a cambiar
     var statesPageLength = 0;
     var statesURL = [];
-    var correctData = 0;
 
     //Buscar en la pagina correcta por el estado e insertarlo
     let a = 0;
@@ -44,7 +41,7 @@ async function loadData(){
 
             let x = 0;
             var dataStates1 = [];
-            statesURL=apiStatesURL+'1';
+            statesURL=apiStatesURL+'1'; //la primera pagina de los estados
             const giveState1 = await fetch(statesURL).then(response => response.json()).then(data => {
                 dataStates1 = data;
                 statesPageLength = data.states.length; //da el numero de estados de la pagina
@@ -62,7 +59,7 @@ async function loadData(){
 
             let y = 0;
             var dataStates2 = [];
-            statesURL=apiStatesURL+'2';
+            statesURL=apiStatesURL+'2'; //segunda pagina
             const giveState2 = await fetch(statesURL).then(response => response.json()).then(data => {
                 dataStates2 = data;
                 statesPageLength = data.states.length;
@@ -79,7 +76,7 @@ async function loadData(){
 
             let z = 0;
             var dataStates3 = [];
-            statesURL=apiStatesURL+'3';
+            statesURL=apiStatesURL+'3'; //tercera y ultima pagina
             const giveState3 = await fetch(statesURL).then(response => response.json()).then(data => {
                 dataStates3 = data;
                 statesPageLength = data.states.length;
@@ -94,7 +91,8 @@ async function loadData(){
             }
         }
     }
-
+    //llamar la funcion para insertar los municipios de Aguascalientes despues de dar cargar todo
+    giveMunicipality();
 }
 giveMunicipality = async function(){
     if(stateList.value==""){
@@ -105,6 +103,7 @@ giveMunicipality = async function(){
         municipalityList.disabled = false; //reactivar el select de los municipios
     }
     
+    //La variable debe ser +1 ya que el index empieza en 0, y no hay estados con el id de 0
     var selectState = stateInput.selectedIndex + 1;
     
     if (!stateList.value){
@@ -258,6 +257,7 @@ function validarCampos(){
 
 //funcion para limpiar lo escrito en el formulario
 function clearInput(){
+    //Limpiar datos necesarios
     nameInput1.value='';
     nameInput2.value='';
     nameInput3.value='';
@@ -266,6 +266,13 @@ function clearInput(){
     stateInput.value="";
     municipalityInput.value='';
     phoneInput.value='';
+    //Limpiar datos opcionales
+    genderInput0.checked = true;
+    genderInput1.checked = false;
+    genderInput2.checked = false;
+    eduInput0.checked = false;
+    eduInput1.checked = false;
+    eduInput2.checked = false;
 }
 
 //funcion para validar el numero de telefono y no se escriban ni letras ni simbolos, solo numeros
