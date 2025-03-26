@@ -261,9 +261,3 @@ const municipiosOpciones = {};
         idStart = 31;
     }
 */
-
-// NECESARIOS
-/*
-    municipalityList.disabled = stateList.value=="";
-    municipalityList.options.length= 0;
-*/
