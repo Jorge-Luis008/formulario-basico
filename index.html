@@ -25,15 +25,21 @@
 
                 <input type="number" name="codigoPostal" id="zipCode" placeholder="C.P." min="10000" max="99999" required>
                 <span class="validity"></span>
+                
+                <fieldset id="stateField">
+                    <legend>Estado:</legend>
+                    <select name="estado" id="state" onchange="giveMunicipality()" required >
+                        <!--Estados ami-->
+                    </select>
+                    <span class="validity"></span>
+                </fieldset>
 
-                <select name="estado" id="state" onchange="giveMunicipality()" required >
-                    <!--Estados ami-->
-                </select>
-                <span class="validity"></span>
-
-                <select name="municipio" id="municipality" disabled>
-                    <!--Se necesitan municipios!-->
-                </select>
+                <fieldset id="municipalityField">
+                    <legend>Municipio:</legend>
+                    <select name="municipio" id="municipality" disabled>
+                        <!--Se necesitan municipios!-->
+                    </select>
+                </fieldset>
             </p>
             <p id="datosExtra">
                 <input type="tel" name="telefono" id="phone" onkeydown=validatePhoneNumber(event) placeholder="Telefono" minlength="10" maxlength="10" required>
