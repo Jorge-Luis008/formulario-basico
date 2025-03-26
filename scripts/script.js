@@ -25,83 +25,31 @@ var municipalityList = document.getElementById("municipality");
 
 //Insertar estados al cargar la pagina
 async function loadData(){
-    //la url sin num de pagina para cambiarla despues
-    const apiStatesURL = ['https://sepomex.icalialabs.com/api/v1/states?page='] 
-    //el id del estado inicial (Aguascalientes)
-    var stateID = 0;
-    //Variables a cambiar
-    var statesPageLength = 0;
-    var statesURL = [];
-
-    //Buscar en la pagina correcta por el estado e insertarlo
+    //la url con todos los estados
+    const apiStatesURL = ['https://sepomex.icalialabs.com/api/v1/states?per_page=32']
+    //Variables(?) a cambiar
     let a = 0;
-    while (a != 33){
-        if(a == 32){break;} //Si por algun motivo la variable se sale del arreglo
-        if(a < 15){ //Busca los estados de la primera pagina
+    var dataStates = [];
+    var statesPageLength = 0;
 
-            let x = 0;
-            var dataStates1 = [];
-            statesURL=apiStatesURL+'1'; //la primera pagina de los estados
-            const giveState1 = await fetch(statesURL).then(response => response.json()).then(data => {
-                dataStates1 = data;
-                statesPageLength = data.states.length; //da el numero de estados de la pagina
-            })
+    const giveState = await fetch(apiStatesURL).then(response => response.json()).then(data => {
+        dataStates = data;
+        statesPageLength = data.states.length;
+    })
 
-            while(x < statesPageLength){ //Añade los estados en la pagina uno por uno
-                var addState = new Option(dataStates1.states[x].name,x);
-                stateList.options.add(addState);
-                a++;
-                x++;
-                if(x > statesPageLength){break;} //para salir del loop while
-            }
-
-        } else if(a >= 15 && a < 30){ //Busca los estados de la segunda pagina
-
-            let y = 0;
-            var dataStates2 = [];
-            statesURL=apiStatesURL+'2'; //segunda pagina
-            const giveState2 = await fetch(statesURL).then(response => response.json()).then(data => {
-                dataStates2 = data;
-                statesPageLength = data.states.length;
-            })
-
-            while(y < statesPageLength){ //Añade los estado de la segunda pagina despues de el ultimo de la primera
-                var addState2 = new Option(dataStates2.states[y].name,y);
-                stateList.options.add(addState2);
-                a++;
-                y++;
-                if(y > statesPageLength){break;}
-            }
-        } else { //Busca los estados restantes en la tercera y ultima pagina
-
-            let z = 0;
-            var dataStates3 = [];
-            statesURL=apiStatesURL+'3'; //tercera y ultima pagina
-            const giveState3 = await fetch(statesURL).then(response => response.json()).then(data => {
-                dataStates3 = data;
-                statesPageLength = data.states.length;
-            })
-
-            while(z < statesPageLength){ //Añade los estados restantes
-                var addState3 = new Option(dataStates3.states[z].name,z);
-                stateList.options.add(addState3);
-                a++;
-                z++;
-                if(z > statesPageLength){break;}
-            }
-        }
+    while(a < statesPageLength){
+        if(a==statesPageLength){break;}
+        var addState = new Option(dataStates.states[a].name, a);
+        stateList.options.add(addState);
+        a++;
     }
     //llamar la funcion para insertar los municipios de Aguascalientes despues de dar cargar todo
     giveMunicipality();
 }
 giveMunicipality = async function(){
-    if(stateList.value==""){
-        //console.log(stateList.value)
-        municipalityList.disabled = true; //desabilitar el select de los municipios
-    } else {
-        //console.log(stateList.value)
-        municipalityList.disabled = false; //reactivar el select de los municipios
-    }
+
+    //Reabilitar la opcion de municipios si el estado ya se dio
+    municipalityList.disabled = stateList.value=="";
     
     //La variable debe ser +1 ya que el index empieza en 0, y no hay estados con el id de 0
     var selectState = stateInput.selectedIndex + 1;
@@ -146,17 +94,8 @@ async function checkButton(){
     var url2 = [0];
     var idStart = 0;
 
-    //Buscar la pagina que contenga el estado correcto
-    if (stateNum<=15){
-        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=1'];
-        idStart = 1;
-    } else if(stateNum>=16 && stateNum<=30){
-        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=2'];
-        idStart = 16;
-    } else if(stateNum>30){
-        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=3'];
-        idStart = 31;
-    }
+    //Buscar en la pagina por el estado
+    url2 = ['https://sepomex.icalialabs.com/api/v1/states?per_page=32'];
 
     //Obtener el numero de estados en la pagina
     const stateName = await fetch(url2).then(response => response.json()).then(data => {
@@ -196,7 +135,7 @@ async function checkButton(){
     while (y < muniLength){
         if (idBegin == muniNum ){
             var muni2 = data3.municipalities[y].name;
-            break
+            break;
         }
         y = y + 1;
         idBegin = idBegin + 1;
@@ -219,6 +158,7 @@ async function checkButton(){
             municipio: sendMuni
         };
 
+        /*
         const url2 = "https://postman-echo.com/post";
         var requestOptions = { //opciones que se requieren por el metodo fetch
             method:'POST',
@@ -226,21 +166,26 @@ async function checkButton(){
             body: JSON.stringify(bodyRequest),
             headers: {
                 'Content-Type':'application/json',
-                'Access-Control-Allow-Origin':'https://postman-echo.com/post'
+                'Access-Control-Allow-Origin':'*'
             }
         };
-
         //fetch para enviar los datos a postman-echo para que este los imprime en la consola
-        const respuesta = await fetch(url2,requestOptions).then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error:',error));
-
-        if (respuesta.ok){ //si la informacion fue enviada
-            console.log(respuesta);
+        try{
+            const respuesta = await fetch(url2,requestOptions);
+            if(!respuesta.ok){ //si no se regresa una respuesta
+                throw new Error(`Response stauts: ${respuesta.status}`);
+            }
+            const json = await respuesta.json();
+            console.log(json);
             alert("Informacion enviada");
-        } else { //si la informaion no fue enviada
+        } catch(error){ //si por algun motivo la informacion no se pudo enviar
+            console.error(error.message);
             alert("Hubo un ERROR: Informacion NO enviada");
         }
+        */
+       console.log(bodyRequest);
     } else {
-        //si por un motivo no se pudo enviar nada
+        //Otro failsafe
         alert("ERROR: Verifica que rellenaste todos los campos e intentelo otra vez.");
         return;
     }

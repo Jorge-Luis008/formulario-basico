@@ -181,4 +181,89 @@ const municipiosOpciones = {};
             }
         }
     }
+    { 
+        if(stateList.value==""){
+            //console.log(stateList.value)
+            municipalityList.disabled = true; //desabilitar el select de los municipios
+        } else {
+            //console.log(stateList.value)
+            municipalityList.disabled = false; //reactivar el select de los municipios
+        }
+    }
+
+    // BUSCAR ESTADOS PAGINA POR PAGINA
+    while (a != 33){
+        if(a == 32){break;} //Si por algun motivo la variable se sale del arreglo
+        if(a < 15){ //Busca los estados de la primera pagina
+
+            let x = 0;
+            var dataStates1 = [];
+            statesURL=apiStatesURL+'1'; //la primera pagina de los estados
+            const giveState1 = await fetch(statesURL).then(response => response.json()).then(data => {
+                dataStates1 = data;
+                statesPageLength = data.states.length; //da el numero de estados de la pagina
+            })
+
+            while(x < statesPageLength){ //Añade los estados en la pagina uno por uno
+                var addState = new Option(dataStates1.states[x].name,x);
+                stateList.options.add(addState);
+                a++;
+                x++;
+                if(x > statesPageLength){break;} //para salir del loop while
+            }
+
+        } else if(a >= 15 && a < 30){ //Busca los estados de la segunda pagina
+
+            let y = 0;
+            var dataStates2 = [];
+            statesURL=apiStatesURL+'2'; //segunda pagina
+            const giveState2 = await fetch(statesURL).then(response => response.json()).then(data => {
+                dataStates2 = data;
+                statesPageLength = data.states.length;
+            })
+
+            while(y < statesPageLength){ //Añade los estado de la segunda pagina despues de el ultimo de la primera
+                var addState2 = new Option(dataStates2.states[y].name,y);
+                stateList.options.add(addState2);
+                a++;
+                y++;
+                if(y > statesPageLength){break;}
+            }
+        } else { //Busca los estados restantes en la tercera y ultima pagina
+
+            let z = 0;
+            var dataStates3 = [];
+            statesURL=apiStatesURL+'3'; //tercera y ultima pagina
+            const giveState3 = await fetch(statesURL).then(response => response.json()).then(data => {
+                dataStates3 = data;
+                statesPageLength = data.states.length;
+            })
+
+            while(z < statesPageLength){ //Añade los estados restantes
+                var addState3 = new Option(dataStates3.states[z].name,z);
+                stateList.options.add(addState3);
+                a++;
+                z++;
+                if(z > statesPageLength){break;}
+            }
+        }
+    }
+
+    //Buscar la pagina que contenga el estado correcto
+    if (stateNum<=15){
+        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=1'];
+        idStart = 1;
+    } else if(stateNum>=16 && stateNum<=30){
+        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=2'];
+        idStart = 16;
+    } else if(stateNum>30){
+        url2 = ['https://sepomex.icalialabs.com/api/v1/states?page=3'];
+        idStart = 31;
+    }
+*/
+
+// NECESARIOS
+/*
+    municipalityList.disabled = stateList.value=="";
+    municipalityList.options.length= 0;
 */
