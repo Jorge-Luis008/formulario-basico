@@ -148,6 +148,11 @@ async function checkButton(){
         var sendState = stateInput[selectState].text
         var sendMuni = municipalityInput[selectMuni].text
 
+        //Llamar la funcion para dar el genero/sexo
+        checkGender();
+        //Llamar la funcion para dar la educacion
+        getEducation();
+
         const bodyRequest = {
             nombre: nameInput1.value,
             apellidoPaterno: nameInput2.value,
@@ -155,7 +160,9 @@ async function checkButton(){
             calle: streetInput.value,
             codigoPostal: zipCodeInput.value,
             estado: sendState,
-            municipio: sendMuni
+            municipio: sendMuni,
+            sexo: selGender,
+            educacion: eduValues
         };
 
         /*
@@ -225,4 +232,37 @@ function validatePhoneNumber(event){
     if(isNaN(event.key) && event.key !== 'Backspace'){
         event.preventDefault();
     }
+}
+
+//funcion para regresar el genero/sexo seleccionado
+let selGender = '';
+
+function checkGender(){
+    const genderSel = document.querySelector('input[name="genero"]:checked')
+    if (genderSel){
+        selGender = genderSel.value
+    } else {
+        selGender = '???'
+    }
+}
+
+//funcion para regresar la educacion
+var eduValues = '';
+function getEducation(){
+    //Busca el fieldset con id 'educacion'
+    const fieldEdu = document.getElementById('education');
+
+    //Selecciona todos los campos dentro de 'educacion'
+    const checkEdu = fieldEdu.querySelectorAll('input[type="checkbox"]'); 
+
+    //Se filtra y mapea los valores
+    const selecValor = Array.from(checkEdu)
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => checkbox.value);
+
+    //Si no se da ningun nivel de educacion
+    eduValues = selecValor.length > 0 ? selecValor : 'Educacion no seleccionada';
+
+    //Se regresa el resultado
+    return eduValues;
 }
