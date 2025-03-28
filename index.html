@@ -25,9 +25,10 @@
 
                 <input type="number" name="codigoPostal" id="zipCode" placeholder="C.P." min="10000" max="99999" required>
                 <span class="validity"></span>
-                
+            </p>
+            <div id="direcciones2">
                 <fieldset id="stateField">
-                    <legend>Estado:</legend>
+                    <legend id="sfID">Estado:</legend>
                     <select name="estado" id="state" onchange="giveMunicipality()" required >
                         <!--Estados ami-->
                     </select>
@@ -35,16 +36,17 @@
                 </fieldset>
 
                 <fieldset id="municipalityField">
-                    <legend>Municipio:</legend>
+                    <legend id="mfID">Municipio:</legend>
                     <select name="municipio" id="municipality" disabled>
                         <!--Se necesitan municipios!-->
                     </select>
                 </fieldset>
-            </p>
+            </div>
             <p id="datosExtra">
                 <input type="tel" name="telefono" id="phone" onkeydown=validatePhoneNumber(event) placeholder="Telefono" minlength="10" maxlength="10" required>
                 <span class="validity"></span>
-
+            </p>
+            <div id="optionalStuff">
                 <fieldset id="gender">
                     <legend>Sexo</legend>
                     <div>
@@ -70,10 +72,10 @@
                     <input type="checkbox" name="educacion" id="eduUni" value="Universidad">
                     <label for="eduUni">Universidad</label>
                 </fieldset>
-            </p>
+            </div>
             <p id="buttons">
 
-                <button onclick=clearInput()>Limpiar</button>
+                <button id="reset" onclick=clearInput()>Limpiar</button>
                 <button id="sendForm" onclick=checkButton()>Enviar</button>
                 
             </p>

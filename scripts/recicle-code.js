@@ -1,6 +1,7 @@
 // CODIGO QUE PUEDE SER UTIL DESPUES
 
 // HTML
+
 /*
 <option value="2" name="bajaCalifornia">Baja California</option>
 <option value="3" name="bajaCaliforniaSur">Baja California Sur</option>
@@ -15,6 +16,61 @@
 */
 
 // CSS
+
+/*
+body{
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: solid black;
+}
+h1{
+    text-align: center;
+    font-family: sans-serif;
+}
+
+p#datosGenerales{
+    display: flex;
+}
+input#name,input#name2,input#name3{
+    margin-right: 25px;
+}
+
+p#direcciones{
+    display: flex;
+}
+fieldset#stateField,fieldset#municipalityField{
+    margin-right: 25px;
+    font-family: sans-serif;
+    width: 120px;
+}
+input#street,input#zipCode,select#state,select#municipality{
+    margin-right: 25px;
+}
+
+p#datosExtra{
+    display: flex;
+}
+input#phone,fieldset#gender{
+    margin-right: 25px;
+    font-family: sans-serif;
+}
+
+fieldset#education{
+    margin-right: 25px;
+    font-family: sans-serif;
+}
+
+input#name,input#name2,input#name3,input#street,input#zipCode,select#state,select#municipality,input#phone,fieldset#stateField,fieldset#municipalityField,fieldset#gender,fieldset#education{
+    margin-left: 25px;
+}
+input#send{
+    position: sticky; right: 0;
+}
+p#buttons{
+    margin: 25px;
+}
+*/
 
 // JAVASCRIPT
 /*

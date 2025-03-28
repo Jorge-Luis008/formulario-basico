@@ -1,54 +1,75 @@
+/*Estilo de la pagina*/
+html{
+    font-family: sans-serif;
+}
 body{
-    width: 900px;
     margin: 0 auto;
     margin-top: 20px;
+    width: 1000px;
     border: solid black;
 }
 h1{
     text-align: center;
-    font-family: sans-serif;
+}
+span.validity{
+    margin-right: 10px;
 }
 
 p#datosGenerales{
     display: flex;
 }
-input#name,input#name2,input#name3{
-    margin-right: 25px;
+input#name, #name2, #name3, fieldset#stateField, #municipalityField{
+    margin-right: 15px;
+    margin-left: 25px;
 }
 
 p#direcciones{
     display: flex;
 }
-fieldset#stateField,fieldset#municipalityField{
-    margin-right: 25px;
-    font-family: sans-serif;
-    width: 120px;
+input#street, #zipCode{
+    margin-right: 15px;
+    margin-left: 25px;
 }
-input#street,input#zipCode,select#state,select#municipality{
-    margin-right: 25px;
+
+div#direcciones2{
+    display: flex;
+}
+select#state{
+    margin-right: 15px;
+}
+fieldset#stateField, #municipalityField{
+    width: 250px;
+    margin-right: 10px;
 }
 
 p#datosExtra{
     display: flex;
 }
-input#phone,fieldset#gender{
-    margin-right: 25px;
-    font-family: sans-serif;
-}
-
-fieldset#education{
-    margin-right: 25px;
-    font-family: sans-serif;
-}
-
-input#name,input#name2,input#name3,input#street,input#zipCode,select#state,select#municipality,input#phone,fieldset#stateField,fieldset#municipalityField,fieldset#gender,fieldset#education{
+input#phone{
+    margin-right: 15px;
     margin-left: 25px;
 }
-input#send{
-    position: sticky; right: 0;
+
+div#optionalStuff{
+    display: flex;
+    margin-left: 25px;
 }
+fieldset#gender, #education{
+    width: 400px;
+    margin-right: 10px;
+}
+
 p#buttons{
+    display: flex;
+    justify-content: space-between;
     margin: 25px;
+}
+button#reset{
+    width: 200px;
+}
+button#sendForm{
+    margin-left: auto;
+    width: 200px;
 }
 
 /*Validaciones*/
