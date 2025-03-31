@@ -10,20 +10,20 @@
         <h1>Formulario</h1>
         <div id="fomularioForm">
             <p id="datosGenerales">
-                <input type="text" name="nombre" id="name" placeholder="Nombre" maxlength="20" required>
+                <input type="text" title="Escriba su nombre" name="nombre" id="name" placeholder="Nombre" maxlength="20" required>
                 <span class="validity"></span>
 
-                <input type="text" name="apellidoPaterno" id="name2" placeholder="Apellido Paterno" maxlength="20" required>
+                <input type="text" title="Escriba su apellido paterno" name="apellidoPaterno" id="name2" placeholder="Apellido Paterno" maxlength="20" required>
                 <span class="validity"></span>
 
-                <input type="text" name="apellidoMaterno" id="name3" placeholder="Apellido Materno" maxlength="20" required>
+                <input type="text" title="Escriba su apellido materno" name="apellidoMaterno" id="name3" placeholder="Apellido Materno" maxlength="20" required>
                 <span class="validity"></span>
             </p>
             <p id="direcciones">
-                <input type="text" name="calle" id="street" placeholder="Calle" maxlength="30" required>
+                <input type="text" title="Escriba su direccion" name="calle" id="street" placeholder="Calle" maxlength="30" required>
                 <span class="validity"></span>
 
-                <input type="number" name="codigoPostal" id="zipCode" placeholder="C.P." min="10000" max="99999" required>
+                <input type="number" title="Escriba su codigo postal" name="codigoPostal" id="zipCode" placeholder="C.P." min="10000" max="99999" required>
                 <span class="validity"></span>
             </p>
             <div id="direcciones2">
@@ -43,7 +43,7 @@
                 </fieldset>
             </div>
             <p id="datosExtra">
-                <input type="tel" name="telefono" id="phone" onkeydown=validatePhoneNumber(event) placeholder="Telefono" minlength="10" maxlength="10" required>
+                <input type="tel" title="Escriba su telefono" name="telefono" id="phone" onkeydown=validatePhoneNumber(event) placeholder="Telefono" minlength="10" maxlength="10" required>
                 <span class="validity"></span>
             </p>
             <div id="optionalStuff">
