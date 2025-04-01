@@ -1,20 +1,22 @@
-/*Estilo de la pagina*/
-html{
+/* ----- ESTILO DE LA PAGINA ----- */
+
+html{ /*Toda la pagina*/
     font-family: sans-serif;
 }
-body{
+body{ /*Cuerpo de la pagina*/
     margin: 0 auto;
     margin-top: 20px;
     width: 1000px;
     border: solid black;
     border-radius: 15px;
 }
-h1{
+h1{ /*El texto que dice: Formulario*/
     text-align: center;
 }
-span.validity{
+span.validity{ /*Para todas las validaciones*/
     margin-right: 10px;
 }
+/*Les da una "sombra" en el input seleccionado*/
 input[type=text]:focus{
     background-color: lightblue;
 }
@@ -25,7 +27,7 @@ input[type=tel]:focus{
     background: lightblue;
 }
 
-p#datosGenerales{
+p#datosGenerales{ /*Contiene: Nombre, Apellidos Paternos y Maternos*/
     display: flex;
 }
 input#name, #name2, #name3, fieldset#stateField, #municipalityField{
@@ -33,7 +35,7 @@ input#name, #name2, #name3, fieldset#stateField, #municipalityField{
     margin-left: 25px;
 }
 
-p#direcciones{
+p#direcciones{ /*Contiene: Calle, Codigo Postal, Estado y Municipio*/
     display: flex;
 }
 input#street, #zipCode{
@@ -47,7 +49,7 @@ div#direcciones2{
 select#state{
     margin-right: 15px;
 }
-fieldset#stateField, #municipalityField{
+fieldset#stateField, #municipalityField{/*Les da esquinas redondas*/
     width: 250px;
     margin-right: 10px;
     border-radius: 5px 15px;
@@ -55,7 +57,7 @@ fieldset#stateField, #municipalityField{
     border-color: #000000;
 }
 
-p#datosExtra{
+p#datosExtra{ /*Contiene: Telefono*/
     display: flex;
 }
 input#phone{
@@ -63,24 +65,24 @@ input#phone{
     margin-left: 25px;
 }
 
-div#optionalStuff{
+div#optionalStuff{ /*Contiene: Genero y Educacion*/
     display: flex;
     margin-left: 25px;
 }
-fieldset#gender, #education{
+fieldset#gender, #education{/*Les da esquinas redondas*/
     width: 400px;
     margin-right: 10px;
     border-radius: 5px 15px;
     border-width: 2px;
     border-color: #000000;
 }
-
-p#buttons{
+/*Botones*/
+p#buttons{/*Todos los botones*/
     display: flex;
     justify-content: space-between;
     margin: 25px;
 }
-button#reset{
+button#reset{/*El boton "limpiar"*/
     width: 200px;
     height: 35px;
     background-color:darkcyan;
@@ -89,11 +91,11 @@ button#reset{
     text-align: center;
     font-size: 20px;
 }
-button#reset:hover{
+button#reset:hover{/*Al poner el mouse en el boton*/
     box-shadow: 0px 0px 10px #54fcfc;
 }
 
-button#sendForm{
+button#sendForm{/*El boton "enviar"*/
     margin-left: auto;
     width: 200px;
     height: 35px;
@@ -103,11 +105,11 @@ button#sendForm{
     text-align: center;
     font-size: 20px;
 }
-button#sendForm:hover{
+button#sendForm:hover{/*Al poner el mouse en el boton*/
     box-shadow: 0px 0px 10px #28ff32;
 }
 
-/*Validaciones*/
+/* ----- VALIDACIONES ----- */
 
 /*Nombre*/
 input#name:invalid+span::after{
