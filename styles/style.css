@@ -56,6 +56,10 @@ div#direcciones2{ /*Contiene: Estado y Municipio*/
 }
 select#state{
     margin-right: 15px;
+    height: 25px;
+}
+select#municipality{
+    height: 25px;
 }
 fieldset#stateField, #municipalityField{/*Les da esquinas redondas*/
     width: 250px;
