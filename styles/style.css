@@ -103,6 +103,7 @@ button#reset{/*El boton "limpiar"*/
 }
 button#reset:hover{/*Al poner el mouse en el boton*/
     box-shadow: 0px 0px 10px #54fcfc;
+    background-color: #3fc5c5;
 }
 
 button#sendForm{/*El boton "enviar"*/
@@ -117,6 +118,7 @@ button#sendForm{/*El boton "enviar"*/
 }
 button#sendForm:hover{/*Al poner el mouse en el boton*/
     box-shadow: 0px 0px 10px #28ff32;
+    background-color: #39c340;
 }
 
 /* ----- VALIDACIONES ----- */
