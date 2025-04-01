@@ -2,6 +2,7 @@
 
 html{ /*Toda la pagina*/
     font-family: sans-serif;
+    background-color: gray;
 }
 body{ /*Cuerpo de la pagina*/
     margin: 0 auto;
@@ -9,6 +10,7 @@ body{ /*Cuerpo de la pagina*/
     width: 1000px;
     border: solid black;
     border-radius: 15px;
+    background-color: rgb(244, 244, 244);
 }
 h1{ /*El texto que dice: Formulario*/
     text-align: center;
@@ -30,20 +32,26 @@ input[type=tel]:focus{
 p#datosGenerales{ /*Contiene: Nombre, Apellidos Paternos y Maternos*/
     display: flex;
 }
+input#name, #name2, #name3{
+    width: 200px;
+    height: 20px;
+}
 input#name, #name2, #name3, fieldset#stateField, #municipalityField{
     margin-right: 15px;
     margin-left: 25px;
 }
 
-p#direcciones{ /*Contiene: Calle, Codigo Postal, Estado y Municipio*/
+p#direcciones{ /*Contiene: Calle y Codigo Postal*/
     display: flex;
 }
 input#street, #zipCode{
     margin-right: 15px;
     margin-left: 25px;
+    width: 200px;
+    height: 20px
 }
 
-div#direcciones2{
+div#direcciones2{ /*Contiene: Estado y Municipio*/
     display: flex;
 }
 select#state{
@@ -63,6 +71,8 @@ p#datosExtra{ /*Contiene: Telefono*/
 input#phone{
     margin-right: 15px;
     margin-left: 25px;
+    width: 200px;
+    height: 20px;
 }
 
 div#optionalStuff{ /*Contiene: Genero y Educacion*/
